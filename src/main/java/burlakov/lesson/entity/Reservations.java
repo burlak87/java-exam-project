@@ -20,11 +20,11 @@ public class Reservations {
     @Column(nullable = false)
     private BigDecimal totalAmount;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurants restaurants;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customers customer;
 

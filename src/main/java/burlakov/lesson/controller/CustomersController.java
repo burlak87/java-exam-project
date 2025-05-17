@@ -2,34 +2,26 @@ package burlakov.lesson.controller;
 
 import burlakov.lesson.entity.Customers;
 import burlakov.lesson.pojo.CustomersBody;
-import burlakov.lesson.repo.CustomersRepository;
+import burlakov.lesson.service.CustomersService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CustomersController {
-    private final CustomersRepository repository;
+    private final CustomersService customersService;
 
-    public CustomersController(CustomersRepository repository) {
-        this.repository = repository;
+    public CustomersController(CustomersService customersService) {
+        this.customersService = customersService;
     }
 
-    @GetMapping("fetch-customers")
+    @GetMapping("customers/index")
     public ResponseEntity<Iterable<Customers>> getCustomers() {
-        return ResponseEntity.ok(repository.findAll());
+        return ResponseEntity.ok(customersService.getAllCustomers());
     }
 
-    @PostMapping("add-customers")
+    @PostMapping("customers/store")
     public ResponseEntity<Customers> add(@RequestBody CustomersBody customersBody) {
-        Customers customers = new Customers();
-        customers.setName(customersBody.getName());
-        customers.setEmail(customersBody.getEmail());
-        customers.setPhone(customersBody.getPhone());
-        customers.setAddress(customersBody.getAddress());
-        repository.save(customers);
+        Customers customers = customersService.createCustomer(customersBody);
         return ResponseEntity.ok(customers);
     }
 }

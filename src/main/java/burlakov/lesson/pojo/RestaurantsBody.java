@@ -1,6 +1,5 @@
 package burlakov.lesson.pojo;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class RestaurantsBody {

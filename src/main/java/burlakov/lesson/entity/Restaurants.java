@@ -1,9 +1,8 @@
 package burlakov.lesson.entity;
 
 import jakarta.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
-
-
 
 @Entity(name = "restaurants_data")
 public class Restaurants {
@@ -18,15 +17,14 @@ public class Restaurants {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurant_id")
-    private List<Categories> allCategories;
+    private List<Menu> menus = new ArrayList<>();
 
-    // Геттеры и сеттеры
-    public List<Categories> getAllCategories() {
-        return allCategories;
+    public List<Menu> getMenus() {
+        return menus;
     }
 
-    public void setAllCategories(List<Categories> allCategories) {
-        this.allCategories = allCategories;
+    public void setMenus(List<Menu> menus) {
+        this.menus = menus;
     }
 
     public Long getId() {
@@ -76,5 +74,4 @@ public class Restaurants {
     public void setDescription(String description) {
         this.description = description;
     }
-
 }

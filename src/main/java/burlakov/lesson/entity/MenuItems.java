@@ -16,15 +16,27 @@ public class MenuItems {
     private Boolean isAvailable;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Categories categories;
+    @JoinColumn(name = "menu_id")
+    private Menu menu;
 
-    public Categories getCategory() {
-        return categories;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    public Menu getMenu() {
+        return menu;
     }
 
-    public void setCategory(Categories category) {
-        this.categories = category;
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Long getId() {

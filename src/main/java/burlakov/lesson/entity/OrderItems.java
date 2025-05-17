@@ -18,9 +18,8 @@ public class OrderItems {
 
     @ManyToOne
     @JoinColumn(name = "reservation_id", nullable = false)
-    private Reservations reservations; // Связь с Reservations
+    private Reservations reservations;
 
-    // Геттеры и сеттеры
     public Long getId() {
         return id;
     }
